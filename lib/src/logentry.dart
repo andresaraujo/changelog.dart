@@ -6,5 +6,6 @@ class LogEntry {
   List<int> closes = [];
   List<String> breaks = [];
 
-  toString() => "hash: $hash, type: $type, subject: $subject, component: $component,  closes: $closes";
+  toString() =>
+      "hash: $hash, type: $type, subject: $subject, component: $component,  closes: $closes";
 }
