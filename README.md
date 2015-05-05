@@ -1,19 +1,6 @@
 # changelog
 
-A library for Dart developers. It is awesome.
+A changelog generation tool using git data and Angular conventions
 
-## Usage
+Work in progress
 
-A simple usage example:
-
-    import 'package:changelog/changelog.dart';
-
-    main() {
-      var awesome = new Awesome();
-    }
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
