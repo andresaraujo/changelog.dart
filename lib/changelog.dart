@@ -1,4 +1,8 @@
 library changelog;
 
-export 'src/changelog_base.dart';
-export 'src/logentry.dart';
+import 'dart:io';
+import 'package:git/git.dart' as git;
+
+part 'src/config.dart';
+part 'src/parser.dart';
+part 'src/logentry.dart';

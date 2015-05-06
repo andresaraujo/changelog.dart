@@ -1,8 +1,4 @@
-library changelog.base;
-
-import 'dart:io';
-import 'package:git/git.dart' as git;
-import 'package:changelog/src/logentry.dart';
+part of changelog;
 
 RegExp commitPattern = new RegExp(r"^(.*)\((.*)\):(.*)");
 RegExp commitAltPattern = new RegExp(r"^(.*):\s(.*)");
@@ -10,41 +6,16 @@ RegExp closesPattern =
     new RegExp(r"(?:Closes|Fixes|Resolves)\s((?:#(\d+)(?:,\s)?)+)");
 RegExp closesIntPattern = new RegExp(r"\d+");
 
-class Opts {
-  String grep = '^feat|^fix|^docs|BREAKING';
-  String format = '%H%n%s%n%b%n==END==';
-  String from = '';
-  String to = 'HEAD';
-
-  Map sections = {};
-
-  Opts() {
-    sections['Documentation'] = ['doc', 'docs'];
-    sections['Features'] = ['ft', 'feat'];
-    sections['Bug Fixes'] = ['fx', 'fix'];
-    sections['Unknown'] = ['unk'];
-    sections['Breaks'] = [];
-  }
-  getSectionFor(String alias) {
-    for (var key in sections.keys) {
-      if (sections[key].contains(alias)) {
-        return key;
-      }
-    }
-    return 'Unknown';
-  }
-}
-
-getLogEntries(Opts opts, {String workingDir}) async {
-  var range = opts.from == null || opts.from.isEmpty
+getLogEntries(ChangelogConfig config, {String workingDir}) async {
+  var range = config.from == null || config.from.isEmpty
       ? "HEAD"
-      : "${opts.from}..${opts.to}";
+      : "${config.from}..${config.to}";
 
   var arguments = [
     'log',
     '-E',
-    '--grep=${opts.grep}',
-    '--format=${opts.format}',
+    '--grep=${config.grep}',
+    '--format=${config.format}',
     '$range'
   ];
 
@@ -55,13 +26,13 @@ getLogEntries(Opts opts, {String workingDir}) async {
 
   List<LogEntry> entries = out
       .split("\n==END==\n")
-      .map((raw) => parseRawCommit(raw, opts))
+      .map((raw) => parseRawCommit(raw, config))
       .where((entry) => entry != null)
       .toList();
   return entries;
 }
 
-LogEntry parseRawCommit(String raw, Opts opts) {
+LogEntry parseRawCommit(String raw, ChangelogConfig opts) {
   if (raw == null || raw.isEmpty) {
     return null;
   }

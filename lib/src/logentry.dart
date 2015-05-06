@@ -1,3 +1,5 @@
+part of changelog;
+
 class LogEntry {
   String hash;
   String type;

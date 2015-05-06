@@ -3,7 +3,7 @@ library changelog.example;
 import 'package:changelog/changelog.dart';
 
 main() async {
-  Opts opts = new Opts();
+  ChangelogConfig opts = new ChangelogConfig();
 
   List<LogEntry> entries = await getLogEntries(opts);
 
