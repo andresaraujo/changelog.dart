@@ -6,21 +6,42 @@ class ChangelogConfig {
   String from = '';
   String to = 'HEAD';
 
-  Map sections = {};
+  Map _sections = {};
 
   ChangelogConfig() {
-    sections['Documentation'] = ['doc', 'docs'];
-    sections['Features'] = ['ft', 'feat'];
-    sections['Bug Fixes'] = ['fx', 'fix'];
-    sections['Unknown'] = ['unk'];
-    sections['Breaks'] = [];
+    _sections['Documentation'] = ['doc', 'docs'];
+    _sections['Features'] = ['ft', 'feat'];
+    _sections['Bug Fixes'] = ['fx', 'fix'];
+    _sections['Unknown'] = ['unk'];
+    _sections['Breaks'] = [];
+
+    updateGrep();
   }
+
+  updateGrep() {
+    List<String> grep = [];
+    for(List value in _sections.values) {
+      for(var v in value){
+        if(!grep.contains(v)) {
+          grep.add("^$v");
+        }
+      }
+    }
+    grep.add('BREAKING');
+    //print(grep.join("|"));
+  }
+
   getSectionFor(String alias) {
-    for (var key in sections.keys) {
-      if (sections[key].contains(alias)) {
+    for (var key in _sections.keys) {
+      if (_sections[key].contains(alias)) {
         return key;
       }
     }
     return 'Unknown';
+  }
+
+  addSection(String title, List<String> alias){
+    _sections[title] = alias != null ? alias : [];
+    updateGrep();
   }
 }
