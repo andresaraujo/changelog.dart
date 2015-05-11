@@ -1,9 +1,5 @@
-// Copyright (c) 2015, <your name>. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
-
 library changelog.test;
 
-import 'dart:async';
 import 'package:test/test.dart';
 import 'package:mockable_filesystem/mock_filesystem.dart';
 import 'package:changelog/changelog.dart';
@@ -111,7 +107,7 @@ main() {
       '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd))\n\n');
     });
 
-    test('write', () {
+    test('should write to a file the provided changelog', () {
       var f = fileSystem.getFile('/CHANGELOG.md');
       expect(f, isNotNull);
       expect(f.existsSync(), isFalse);
