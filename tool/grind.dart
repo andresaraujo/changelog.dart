@@ -7,7 +7,7 @@ main(args) => grind(args);
 
 @Task()
 analyze() {
-  new PubApp.global('tuneup')..run(['check']);
+  new PubApp.local('tuneup')..run(['check']);
 }
 
 @Task()
