@@ -66,15 +66,15 @@ LogEntry parseRawCommit(String raw, ChangelogConfig opts) {
       entry.type = opts.getSectionFor("unk");
       return null;
     }
-    entry.type = opts.getSectionFor(matcher[1].toLowerCase());
-    entry.subject = matcher[2];
+    entry.type = opts.getSectionFor(matcher[1].toLowerCase().trim());
+    entry.subject = matcher[2].trim();
 
     return entry;
   }
 
-  entry.type = opts.getSectionFor(matcher[1].toLowerCase());
-  entry.component = matcher[2];
-  entry.subject = matcher[3];
+  entry.type = opts.getSectionFor(matcher[1].toLowerCase().trim());
+  entry.component = matcher[2].trim();
+  entry.subject = matcher[3].trim();
 
   return entry;
 }
