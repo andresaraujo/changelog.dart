@@ -20,15 +20,14 @@ class ChangelogConfig {
 
   updateGrep() {
     List<String> grep = [];
-    for(List value in _sections.values) {
-      for(var v in value){
-        if(!grep.contains(v)) {
+    for (List value in _sections.values) {
+      for (var v in value) {
+        if (!grep.contains(v)) {
           grep.add("^$v");
         }
       }
     }
     grep.add('BREAKING');
-    //print(grep.join("|"));
   }
 
   getSectionFor(String alias) {
@@ -40,7 +39,7 @@ class ChangelogConfig {
     return 'Unknown';
   }
 
-  addSection(String title, List<String> alias){
+  addSection(String title, List<String> alias) {
     _sections[title] = alias != null ? alias : [];
     updateGrep();
   }

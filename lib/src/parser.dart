@@ -62,7 +62,7 @@ LogEntry parseRawCommit(String raw, ChangelogConfig opts) {
 
   //Extract breaking changes
   matcher = breakingPattern.firstMatch(raw);
-  if(matcher != null) {
+  if (matcher != null) {
     entry.breaks = matcher[1].split('\n').map((line) => line.trim()).join('\n');
   }
 
