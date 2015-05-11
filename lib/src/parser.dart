@@ -5,6 +5,7 @@ RegExp commitAltPattern = new RegExp(r"^(.*):\s(.*)");
 RegExp closesPattern =
     new RegExp(r"(?:Closes|Fixes|Resolves)\s((?:#(\d+)(?:,\s)?)+)");
 RegExp closesIntPattern = new RegExp(r"\d+");
+RegExp breakingPattern = new RegExp(r"BREAKING CHANGE:([\s\S]*)");
 
 getLogEntries(ChangelogConfig config, {String workingDir}) async {
   var range = config.from == null || config.from.isEmpty
@@ -57,8 +58,16 @@ LogEntry parseRawCommit(String raw, ChangelogConfig opts) {
 
   entry.body = lines.map((line) => line.trim()).join('\n');
 
+  var matcher;
+
+  //Extract breaking changes
+  matcher = breakingPattern.firstMatch(raw);
+  if(matcher != null) {
+    entry.breaks = matcher[1].split('\n').map((line) => line.trim()).join('\n');
+  }
+
   //Extract type, component, type
-  var matcher = commitPattern.firstMatch(entry.subject);
+  matcher = commitPattern.firstMatch(entry.subject);
 
   //If component doesn't exist
   if (matcher == null) {

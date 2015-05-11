@@ -7,7 +7,7 @@ class LogEntry {
   String component;
   String body;
   List<int> closes = [];
-  List<String> breaks = [];
+  String breaks;
 
   toString() =>
       "hash: $hash, type: $type, subject: $subject, component: $component, body: $body, closes: $closes";
