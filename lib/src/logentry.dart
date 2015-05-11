@@ -5,9 +5,10 @@ class LogEntry {
   String type;
   String subject;
   String component;
+  String body;
   List<int> closes = [];
   List<String> breaks = [];
 
   toString() =>
-      "hash: $hash, type: $type, subject: $subject, component: $component,  closes: $closes";
+      "hash: $hash, type: $type, subject: $subject, component: $component, body: $body, closes: $closes";
 }

@@ -55,6 +55,8 @@ LogEntry parseRawCommit(String raw, ChangelogConfig opts) {
         .forEach((match) => entry.closes.add(int.parse(match[0])));
   });
 
+  entry.body = lines.map((line) => line.trim()).join('\n');
+
   //Extract type, component, type
   var matcher = commitPattern.firstMatch(entry.subject);
 
