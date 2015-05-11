@@ -28,6 +28,8 @@ writeChangelog(io.File file, List<LogEntry> entries, ChangelogConfig config) {
     }
   });
   StringBuffer content = new StringBuffer();
+
+  //header
   content.write('<a name="${config.version}">${config.appName}</a>\n# ${config.version} ${config.versionText} (${currentDate()})\n\n');
 
   sections.forEach((sectionName, Map section) {
@@ -60,7 +62,7 @@ writeSection(StringBuffer content, String title, Map section, ChangelogConfig co
       if(printCommitLinks){
         content.write("$prefix ${entry.subject}\n  (${linkToCommit(entry.hash, config.repoUrl)}");
         if(entry.closes.length > 0) {
-          content.write(",\n   ${entry.closes.join(', ')}");
+          content.write(",\n closes: ${entry.closes.map((i) => linkToIssue(i, config.repoUrl)).join(', ')}");
         }
         content.write(")\n");
       }else {
@@ -73,6 +75,11 @@ writeSection(StringBuffer content, String title, Map section, ChangelogConfig co
 
 String linkToCommit(String hash, repoUrl) {
   return "[${hash.substring(0,8)}](${repoUrl}/commits/$hash)";
+}
+
+String linkToIssue(int issue, String repoUrl) {
+  bool repoExist = repoUrl != null && repoUrl.isNotEmpty;
+  return repoExist ? "[#${issue}](${repoUrl}/issues/$issue)" : "#issue";
 }
 
 String currentDate() {
