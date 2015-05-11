@@ -68,31 +68,13 @@ main() {
 
   group("writer", () {
     var config = new ChangelogConfig()
-    ..repoUrl = "https://github.com/user";
+    ..repoUrl = "https://github.com/user"
+    ..version = "0.1.0"
+    ..versionText = "deceptive peanut"
+    ..appName = "myApp";
 
     setUp(() {
       fileSystem = new MockFileSystem();
-    });
-
-    test('non-existent entity', () {
-      var f = fileSystem.getFile('/foo/bar');
-      expect(f, isNotNull);
-      expect(f.existsSync(), isFalse);
-      var d = fileSystem.getDirectory('/foo/bar');
-      expect(d, isNotNull);
-      expect(d.existsSync(), isFalse);
-      var l = fileSystem.getLink('/foo/bar');
-      expect(l, isNotNull);
-      expect(l.existsSync(), isFalse);
-    });
-
-    test('create file at root', () {
-      var f = fileSystem.getFile('/foo.txt');
-      expect(f, isNotNull);
-      expect(f.existsSync(), isFalse);
-      f.writeAsStringSync('Hello world');
-      expect(f.existsSync(), isTrue);
-      expect(f.readAsStringSync(), 'Hello world');
     });
 
     test('should create a section', () {
@@ -123,23 +105,33 @@ main() {
 
       expect(result.toString(), '\n## Features\n\n- **writer:**\n'+
       '  - broadcast \$destroy event on scope destruction\n' +
-      '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd),\n   200, 58)\n'
+      '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd),\n'
+      ' closes: [#200](https://github.com/user/issues/200), [#58](https://github.com/user/issues/58))\n'
       '  - broadcast \$destroy event on scope destruction\n' +
       '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd))\n\n');
     });
 
     test('write', () {
       var f = fileSystem.getFile('/CHANGELOG.md');
-      //expect(f, isNotNull);
-      //expect(f.existsSync(), isFalse);
+      expect(f, isNotNull);
+      expect(f.existsSync(), isFalse);
 
       writeChangelog(f, getSampleEntries("comp"), config);
-      //expect(5, 4);
+
       expect(f.existsSync(), isTrue);
-      print(f.readAsStringSync());
-      expect(f.readAsStringSync(), '\n## Features\n\n- **writer:**\n'+
-      '  - broadcast \$destroy event on scope destruction\n' +
-      '  - broadcast \$destroy event on scope destruction\n\n');
+      expect(f.readAsStringSync(),
+      '<a name="0.1.0">myApp</a>\n' +
+      '# 0.1.0 deceptive peanut (${currentDate()})\n' +
+      '\n\n## Features\n\n'+
+      '- **comp_1:** broadcast \$destroy event on scope destruction\n' +
+      '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd),\n' +
+      ' closes: [#200](https://github.com/user/issues/200), [#58](https://github.com/user/issues/58))\n' +
+      '- **comp_2:** broadcast \$destroy event on scope destruction\n' +
+      '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd))\n\n\n' +
+      '## Bug Fixes\n\n' +
+      '- **comp_3:** broadcast \$destroy event on scope destruction\n' +
+      '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd))\n' +
+      '\n');
     });
   });
 }
