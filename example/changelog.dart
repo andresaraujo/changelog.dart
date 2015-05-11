@@ -12,7 +12,7 @@ main() async {
 
   List<LogEntry> entries = await getLogEntries(config);
   File f = new File("CHANGELOG.md");
-  f.writeAsStringSync("asd");
+
   print(f.existsSync());
   writeChangelog(f, entries, config);
 }
