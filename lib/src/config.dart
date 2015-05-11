@@ -6,6 +6,11 @@ class ChangelogConfig {
   String from = '';
   String to = 'HEAD';
 
+  String appName = "";
+  String version = "";
+  String versionText = "";
+  String repoUrl = "";
+
   Map _sections = {};
 
   ChangelogConfig() {

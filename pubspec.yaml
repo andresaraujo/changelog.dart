@@ -6,6 +6,8 @@ author: Andres Araujo <a.araujo.azua.com>
 dependencies:
   unscripted: ">=0.6.1+1 <0.7.0"
   git: ">=0.4.4+1 <0.5.0"
+  intl: ">=0.12.3 <0.13.0"
 dev_dependencies:
   test: any
   grinder: ">=0.7.0 <0.8.0"
+  mockable_filesystem: ">=0.0.3 <0.1.0"
