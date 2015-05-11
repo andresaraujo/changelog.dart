@@ -74,7 +74,7 @@ writeSection(StringBuffer content, String title, Map section, ChangelogConfig co
 }
 
 String linkToCommit(String hash, repoUrl) {
-  return "[${hash.substring(0,8)}](${repoUrl}/commits/$hash)";
+  return "[${hash.substring(0,8)}](${repoUrl}/commit/$hash)";
 }
 
 String linkToIssue(int issue, String repoUrl) {

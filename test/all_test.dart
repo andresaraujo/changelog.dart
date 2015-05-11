@@ -101,10 +101,10 @@ main() {
 
       expect(result.toString(), '\n## Features\n\n- **writer:**\n'+
       '  - broadcast \$destroy event on scope destruction\n' +
-      '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd),\n'
+      '  ([9b1aff90](https://github.com/user/commit/9b1aff905b638aa274a5fc8f88662df446d374bd),\n'
       ' closes: [#200](https://github.com/user/issues/200), [#58](https://github.com/user/issues/58))\n'
       '  - broadcast \$destroy event on scope destruction\n' +
-      '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd))\n\n');
+      '  ([9b1aff90](https://github.com/user/commit/9b1aff905b638aa274a5fc8f88662df446d374bd))\n\n');
     });
 
     test('should write to a file the provided changelog', () {
@@ -120,13 +120,13 @@ main() {
       '# 0.1.0 deceptive peanut (${currentDate()})\n' +
       '\n\n## Features\n\n'+
       '- **comp_1:** broadcast \$destroy event on scope destruction\n' +
-      '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd),\n' +
+      '  ([9b1aff90](https://github.com/user/commit/9b1aff905b638aa274a5fc8f88662df446d374bd),\n' +
       ' closes: [#200](https://github.com/user/issues/200), [#58](https://github.com/user/issues/58))\n' +
       '- **comp_2:** broadcast \$destroy event on scope destruction\n' +
-      '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd))\n\n\n' +
+      '  ([9b1aff90](https://github.com/user/commit/9b1aff905b638aa274a5fc8f88662df446d374bd))\n\n\n' +
       '## Bug Fixes\n\n' +
       '- **comp_3:** broadcast \$destroy event on scope destruction\n' +
-      '  ([9b1aff90](https://github.com/user/commits/9b1aff905b638aa274a5fc8f88662df446d374bd))\n' +
+      '  ([9b1aff90](https://github.com/user/commit/9b1aff905b638aa274a5fc8f88662df446d374bd))\n' +
       '\n');
     });
   });
