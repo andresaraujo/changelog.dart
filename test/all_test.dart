@@ -1,7 +1,6 @@
 library changelog.test;
 
 import 'package:test/test.dart';
-import 'package:mockable_filesystem/mock_filesystem.dart';
 import 'package:changelog/changelog.dart';
 
 main() {
