@@ -1,4 +1,14 @@
 <a name="">changelog.dart</a>
+#   (2015-05-26)
+
+
+## Bug Fixes
+
+- **writer:**
+  - Add new changes at the top of the file
+  ([f3cd6c25](https://github.com/andresaraujo/changelog.dart/commit/f3cd6c2545341d9117e72b8d46e7165e56ed1ee4))
+
+<a name="">changelog.dart</a>
 #   (2015-05-11)
 
 
