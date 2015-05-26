@@ -70,7 +70,7 @@ main() {
     ..appName = "myApp";
 
     setUp(() {
-      fileSystem = new MockFileSystem();
+      //fileSystem = new MockFileSystem();
     });
 
     test('should create a section', () {
@@ -108,14 +108,12 @@ main() {
     });
 
     test('should write to a file the provided changelog', () {
-      var f = fileSystem.getFile('/CHANGELOG.md');
-      expect(f, isNotNull);
-      expect(f.existsSync(), isFalse);
 
-      writeChangelog(f, getSampleEntries("comp"), config);
+      StringBuffer content = new StringBuffer();
+      var res = buildContentToWrite(content, getSampleEntries("comp"), config);
 
-      expect(f.existsSync(), isTrue);
-      expect(f.readAsStringSync(),
+      expect(res, isNotNull);
+      expect(res,
       '<a name="0.1.0">myApp</a>\n' +
       '# 0.1.0 deceptive peanut (${currentDate()})\n' +
       '\n\n## Features\n\n'+
