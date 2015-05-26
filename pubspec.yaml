@@ -1,6 +1,6 @@
 name: changelog
 description: A changelog generation tool using git data and Angular conventions
-version: 0.0.1
+version: 0.1.0
 author: Andres Araujo <a.araujo.azua.com>
 #homepage: https://www.example.com
 dependencies:
